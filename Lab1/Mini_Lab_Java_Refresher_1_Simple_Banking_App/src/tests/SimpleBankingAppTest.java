@@ -66,24 +66,33 @@ public class SimpleBankingAppTest {
 		SimpleBankingApp.addTransaction("5495-1234", -depositAmount);
 	}
 
-	// this test method (test case) verifies if the Withdraw feature works properly
-	/* TODO
+
 	public static void testWithdrawals() {
 		// 1-Setup phase
-		
+		double balanceBefore = SimpleBankingApp.getBalance("5495-6789");
+		double withdrawalAmount = 32.19;
 		// 2-Exercise phase
-		
+		SimpleBankingApp.addTransaction("5495-6789", -withdrawalAmount);
+		double balanceAfter = SimpleBankingApp.getBalance("5495-6789");
 		// 3-verify
-		
+		double expectedBalance = balanceBefore - withdrawalAmount;
+		assert balanceAfter == expectedBalance;
+		if (balanceAfter == expectedBalance)
+			System.out.println(TestUtils.TEXT_COLOR_GREEN + "testWithdrawals: TC1 passed"+ TestUtils.TEXT_COLOR_RESET);
+		else {
+			System.out.println(TestUtils.TEXT_COLOR_RED + "testWithdrawals: TC1 FAILED XXX: balanceBefore - withdrawalAmount != balanceAfter");
+			System.out.format("testWithdrawals: balanceBefore = %.2f ; withdrawalAmount = %.2f ; balanceAfter = %.2f %s\n", 
+					balanceBefore , withdrawalAmount , balanceAfter, TestUtils.TEXT_COLOR_RESET);
+		}
 		// 4-tear-down
+		SimpleBankingApp.addTransaction("5495-6789", withdrawalAmount);
 	}
-	*/
 	
 	public static void main(String[] args) {
 		// we need to call our test cases (methods)
 		testLoadData();
 		testDeposits();
-		// testWithdrawals(); -- uncomment this call, when you have developed the test method (test case)
+		testWithdrawals();
 	}
 
 }
