@@ -19,6 +19,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	private double[][] arrayData2D;
 	private KeyedValues keyedValues;
 	private KeyedValues emptyKeyedValues;
+	private KeyedValues negKeyedValues;
 
 	// calculateColumnTotal Method
 	@Before
@@ -398,7 +399,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	@Before
 	public void setUpInvalidCumulativePercentageKeyedValues() throws Exception {
 		DefaultKeyedValues perTest = new DefaultKeyedValues();
-		keyedValues = perTest;
+		negKeyedValues = perTest;
         perTest.addValue("0", 5);
         perTest.addValue("1", -9);
         perTest.addValue("2", 2);
@@ -406,14 +407,14 @@ public class DataUtilitiesTest extends DataUtilities {
 	
 	@After
 	public void tearDownInvalidCumulativePercentageKeyedValues() throws Exception {
-		keyedValues = null;
+		negKeyedValues = null;
 	}
 	
 	@Test
 	public void testInvalidCumluativePercentageKeyedValues() {
 		try
 		{
-			DataUtilities.getCumulativePercentages(keyedValues);
+			DataUtilities.getCumulativePercentages(negKeyedValues);
 			fail("No exception thrown. The expected outcome was: a thrown exception of type: IllegalArgument Exception");
 		}
 		catch (Exception e)
